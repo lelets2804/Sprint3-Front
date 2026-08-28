@@ -174,7 +174,8 @@ body {
     margin-top: 24px;
 }
 
-.primary-button,.secondary-button {
+.primary-button,
+.secondary-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -274,7 +275,11 @@ body {
     letter-spacing: 2px;
 }
 
-.solution-heading h2,.audience-intro h2,.gallery-heading h2,.team-heading h2,.contact-info h2 {
+.solution-heading h2,
+.audience-intro h2,
+.gallery-heading h2,
+.team-heading h2,
+.contact-info h2 {
     color: #f5f3eb;
     font-size: 35px;
     line-height: 1.08;
@@ -431,30 +436,35 @@ body {
 
 .gallery-window {
     width: 100%;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.gallery-window::-webkit-scrollbar {
+    display: none;
 }
 
 .gallery-grid {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     align-items: stretch;
     justify-content: flex-start;
     gap: 20px;
     width: max-content;
-    transform: translateX(0);
-    transition: transform .5s ease;
 }
 
 .gallery-card {
-    flex: 0 0 280px !important;
-    width: 280px !important;
-    min-width: 280px !important;
-    max-width: 280px !important;
+    flex: 0 0 280px;
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
     height: 620px;
     min-height: 620px;
-    display: flex !important;
-    flex-direction: column !important;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     border: 1px solid #2d2d27;
     border-radius: 22px;
@@ -489,53 +499,6 @@ body {
     color: #f2f0e8;
     font-size: 14px;
     background: #12120f;
-}
-
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    z-index: 5;
-    width: 46px;
-    height: 46px;
-    display: grid;
-    place-items: center;
-    border: 1px solid #36362f;
-    border-radius: 50%;
-    background: #12120f;
-    color: #ffd000;
-    font-size: 25px;
-    cursor: pointer;
-    transform: translateY(-50%);
-}
-
-.carousel-button.prev {
-    left: -23px;
-}
-
-.carousel-button.next {
-    right: -23px;
-}
-
-.carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 22px;
-}
-
-.carousel-dot {
-    width: 7px;
-    height: 7px;
-    padding: 0;
-    border: 0;
-    border-radius: 50%;
-    background: #393832;
-    cursor: pointer;
-}
-
-.carousel-dot.active {
-    width: 23px;
-    background: #ffd000;
 }
 
 .team {
@@ -713,7 +676,12 @@ body {
 }
 
 @media (max-width:1500px) {
-    .header-container,.hero-container,.solution-container,.audience-container,.team-container,.contact-container {
+    .header-container,
+    .hero-container,
+    .solution-container,
+    .audience-container,
+    .team-container,
+    .contact-container {
         width: min(100% - 50px,1200px);
     }
 
@@ -725,22 +693,28 @@ body {
         grid-template-columns: 1fr .9fr;
     }
 
-    .solution-intro,.audience-container {
+    .solution-intro,
+    .audience-container {
         gap: 35px;
     }
 
     .gallery-card {
-        flex: 0 0 250px !important;
-        width: 250px !important;
-        min-width: 250px !important;
-        max-width: 250px !important;
+        flex: 0 0 250px;
+        width: 250px;
+        min-width: 250px;
+        max-width: 250px;
         height: 570px;
         min-height: 570px;
     }
 }
 
 @media (max-width:1000px) {
-    .header-container,.hero-container,.solution-container,.audience-container,.team-container,.contact-container {
+    .header-container,
+    .hero-container,
+    .solution-container,
+    .audience-container,
+    .team-container,
+    .contact-container {
         width: min(100% - 50px,900px);
     }
 
@@ -762,10 +736,10 @@ body {
     }
 
     .gallery-card {
-        flex: 0 0 245px !important;
-        width: 245px !important;
-        min-width: 245px !important;
-        max-width: 245px !important;
+        flex: 0 0 245px;
+        width: 245px;
+        min-width: 245px;
+        max-width: 245px;
         height: 570px;
         min-height: 570px;
     }
@@ -805,7 +779,9 @@ body {
         display: block;
     }
 
-    .hero-container,.solution-intro,.audience-container {
+    .hero-container,
+    .solution-intro,
+    .audience-container {
         grid-template-columns: 1fr;
     }
 
@@ -814,7 +790,11 @@ body {
         padding: 45px 0 65px;
     }
 
-    .solution-container,.audience-container,.gallery-container,.team-container,.contact-container {
+    .solution-container,
+    .audience-container,
+    .gallery-container,
+    .team-container,
+    .contact-container {
         width: calc(100% - 35px);
     }
 
@@ -839,20 +819,12 @@ body {
     }
 
     .gallery-card {
-        flex: 0 0 210px !important;
-        width: 210px !important;
-        min-width: 210px !important;
-        max-width: 210px !important;
+        flex: 0 0 210px;
+        width: 210px;
+        min-width: 210px;
+        max-width: 210px;
         height: 530px;
         min-height: 530px;
-    }
-
-    .carousel-button.prev {
-        left: -10px;
-    }
-
-    .carousel-button.next {
-        right: -10px;
     }
 
     .contact-container {
@@ -870,19 +842,22 @@ body {
         font-size: 37px;
     }
 
-    .stats,.hero-buttons {
+    .stats,
+    .hero-buttons {
         grid-template-columns: 1fr;
     }
 
-    .gallery-container,.team-container,.contact-container {
+    .gallery-container,
+    .team-container,
+    .contact-container {
         width: calc(100% - 25px);
     }
 
     .gallery-card {
-        flex: 0 0 190px !important;
-        width: 190px !important;
-        min-width: 190px !important;
-        max-width: 190px !important;
+        flex: 0 0 190px;
+        width: 190px;
+        min-width: 190px;
+        max-width: 190px;
         height: 500px;
         min-height: 500px;
     }

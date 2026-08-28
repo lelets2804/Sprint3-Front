@@ -15,81 +15,33 @@ if (menuButton && nav) {
     });
 }
 
-const gallery = document.querySelector(".gallery-grid");
-const galleryWindow = document.querySelector(".gallery-window");
-const cards = document.querySelectorAll(".gallery-card");
-const previousButton = document.querySelector(".carousel-button.prev");
-const nextButton = document.querySelector(".carousel-button.next");
-const dotsContainer = document.querySelector(".carousel-dots");
+const contactForm = document.querySelector("#contactForm");
 
-let currentIndex = 0;
+if (contactForm) {
+    contactForm.addEventListener("submit", event => {
+        event.preventDefault();
 
-function getVisibleCards() {
-    if (window.innerWidth <= 500) return 1;
-    if (window.innerWidth <= 760) return 2;
-    if (window.innerWidth <= 1000) return 3;
-    return 4;
-}
+        const nome = document.querySelector("#nome");
+        const email = document.querySelector("#email");
+        const mensagem = document.querySelector("#mensagem");
 
-function getCardWidth() {
-    if (!cards.length) return 0;
-    const cardWidth = cards[0].getBoundingClientRect().width;
-    const gap = parseFloat(getComputedStyle(gallery).gap) || 0;
-    return cardWidth + gap;
-}
+        if (!nome || !email || !mensagem) return;
 
-function getMaxIndex() {
-    return Math.max(0, cards.length - getVisibleCards());
-}
+        const nomeValue = nome.value.trim();
+        const emailValue = email.value.trim();
+        const mensagemValue = mensagem.value.trim();
 
-function updateCarousel() {
-    if (!gallery || !cards.length) return;
-
-    const maxIndex = getMaxIndex();
-
-    if (currentIndex > maxIndex) {
-        currentIndex = maxIndex;
-    }
-
-    gallery.style.transform = `translateX(-${currentIndex * getCardWidth()}px)`;
-
-    if (dotsContainer) {
-        dotsContainer.innerHTML = "";
-
-        for (let i = 0; i <= maxIndex; i++) {
-            const dot = document.createElement("button");
-            dot.type = "button";
-            dot.className = "carousel-dot";
-            dot.setAttribute("aria-label", `Ir para posição ${i + 1}`);
-
-            if (i === currentIndex) {
-                dot.classList.add("active");
-            }
-
-            dot.addEventListener("click", () => {
-                currentIndex = i;
-                updateCarousel();
-            });
-
-            dotsContainer.appendChild(dot);
+        if (!nomeValue || !emailValue || !mensagemValue) {
+            alert("Preencha todos os campos.");
+            return;
         }
-    }
-}
 
-if (previousButton) {
-    previousButton.addEventListener("click", () => {
-        currentIndex = Math.max(0, currentIndex - 1);
-        updateCarousel();
+        const subject = encodeURIComponent(`Contato SnapTask - ${nomeValue}`);
+
+        const body = encodeURIComponent(
+            `Nome: ${nomeValue}\nE-mail: ${emailValue}\n\nMensagem:\n${mensagemValue}`
+        );
+
+        window.location.href = `mailto:contato@snaptask.app?subject=${subject}&body=${body}`;
     });
 }
-
-if (nextButton) {
-    nextButton.addEventListener("click", () => {
-        currentIndex = Math.min(getMaxIndex(), currentIndex + 1);
-        updateCarousel();
-    });
-}
-
-window.addEventListener("resize", updateCarousel);
-
-updateCarousel();
